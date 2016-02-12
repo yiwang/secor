@@ -76,17 +76,17 @@ public class AvroMessageParserTest {
         BinaryEncoder encoder = EncoderFactory.get().blockingBinaryEncoder(baos1, null);
         datumWriter.write(user1, encoder);
         encoder.flush();
-        messageWithTimestamp = new Message("test-topic", 0, 0, baos1.toByteArray());
+        messageWithTimestamp = new Message("test-topic", 0, 0, null, baos1.toByteArray());
 
         encoder = EncoderFactory.get().blockingBinaryEncoder(baos2, encoder);
         datumWriter.write(user2, encoder);
         encoder.flush();
-        messageWithoutTimestamp = new Message("test-topic", 0, 0, baos2.toByteArray());
+        messageWithoutTimestamp = new Message("test-topic", 0, 0, null, baos2.toByteArray());
 
         encoder = EncoderFactory.get().blockingBinaryEncoder(baos3, encoder);
         datumWriter.write(user3, encoder);
         encoder.flush();
-        messageWithBadTimestamp = new Message("test-topic", 0, 0, baos3.toByteArray());
+        messageWithBadTimestamp = new Message("test-topic", 0, 0, null, baos3.toByteArray());
     }
 
     @Test
